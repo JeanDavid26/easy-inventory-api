@@ -14,7 +14,7 @@ export class CategoryManagerService {
       where: {
         id,
       },
-      relations: ['oCategory'],
+      relations: ['tArticle'],
     });
 
     if (!category) {

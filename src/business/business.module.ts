@@ -3,10 +3,8 @@ import { ArticleModule } from './article/article.module';
 import { CategoryModule } from './category/category.module';
 import { TransactionModule } from './transaction/transaction.module';
 import { InventoryModule } from './inventory/inventory.module';
-import { SharedModule } from 'src/shared/shared.module';
 
 @Module({
   imports: [ArticleModule, CategoryModule, TransactionModule, InventoryModule],
-  exports: [SharedModule],
 })
 export class BusinessModule {}

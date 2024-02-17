@@ -11,6 +11,8 @@ import { Inventory } from '../entities/Inventory.entity';
 import { Transaction } from '../entities/Transaction.entity';
 import { ArticleQuantity } from '../entities/ArticleQuantity.entity';
 import { ArticleQuantityManagerService } from './article-quantity-manager/article-quantity-manager.service';
+import { ArticleQuantityTransaction } from '../entities/ArticleQuantityTransaction.entity';
+import { ArticleQuantityTransactionManagerService } from './article-quantity-transaction-manager/article-quantity-transaction-manager.service';
 
 @Module({
   imports: [
@@ -26,6 +28,7 @@ import { ArticleQuantityManagerService } from './article-quantity-manager/articl
       Inventory,
       Transaction,
       ArticleQuantity,
+      ArticleQuantityTransaction,
     ]),
   ],
   providers: [
@@ -34,6 +37,7 @@ import { ArticleQuantityManagerService } from './article-quantity-manager/articl
     InventoryManagerService,
     TransactionManagerService,
     ArticleQuantityManagerService,
+    ArticleQuantityTransactionManagerService,
   ],
   exports: [
     CategoryManagerService,
@@ -41,6 +45,7 @@ import { ArticleQuantityManagerService } from './article-quantity-manager/articl
     InventoryManagerService,
     TransactionManagerService,
     ArticleQuantityManagerService,
+    ArticleQuantityTransactionManagerService,
   ],
 })
 export class DbManagerModule {}

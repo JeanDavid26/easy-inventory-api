@@ -13,6 +13,10 @@ export class InventoryManagerService {
     const qb = this._repo
       .createQueryBuilder('inventory')
       .leftJoinAndSelect('inventory.tTransaction', 'ttranaction')
+      .leftJoinAndSelect(
+        'ttranaction.tArticleQuantityTransaction',
+        'tarticlequantitytransaction',
+      )
       .leftJoinAndSelect('inventory.tArticleQuantity', 'tarticlequantity')
       .leftJoinAndSelect(
         'tarticlequantity.oArticle',
@@ -28,7 +32,20 @@ export class InventoryManagerService {
   }
 
   public async list(): Promise<Inventory[]> {
-    return this._repo.find({});
+    const qb = this._repo
+      .createQueryBuilder('inventory')
+      .leftJoinAndSelect('inventory.tTransaction', 'ttranaction')
+      .leftJoinAndSelect('inventory.tArticleQuantity', 'tarticlequantity')
+      .leftJoinAndSelect(
+        'tarticlequantity.oArticle',
+        'tarticlequantity_article',
+      )
+      .leftJoinAndSelect(
+        'tarticlequantity_article.oCategory',
+        'tarticlequantity_category',
+      );
+
+    return qb.getMany();
   }
 
   public async insert(data: Partial<Inventory>): Promise<Inventory> {

@@ -2,7 +2,7 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm';
 import { Article } from './Article.entity';
 import { Inventory } from './Inventory.entity';
 
-@Entity({ schema: 'esayinventory', name: 'article' })
+@Entity({ schema: 'easyinventory', name: 'article_quantity' })
 export class ArticleQuantity {
   @PrimaryColumn({ name: 'article_id' })
   articleId: number;
@@ -20,4 +20,6 @@ export class ArticleQuantity {
   @ManyToOne(() => Inventory, (inventory) => inventory.tArticleQuantity)
   @JoinColumn({ name: 'inventory_id' })
   oInventory: Inventory;
+
+  value?: number;
 }

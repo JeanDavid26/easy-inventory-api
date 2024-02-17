@@ -7,7 +7,7 @@ import { Transaction } from './Transaction.entity';
 @Entity({ schema: 'easyinventory', name: 'inventory' })
 export class Inventory extends BaseTable {
   @Column()
-  designation: string;
+  label: string;
 
   @Column({ type: 'enum', enum: InventoryTypeEnum })
   type: InventoryTypeEnum;
@@ -20,4 +20,7 @@ export class Inventory extends BaseTable {
     (articleQuantity) => articleQuantity.oInventory,
   )
   tArticleQuantity: ArticleQuantity[];
+
+  value?: number;
+  quantity?: number;
 }

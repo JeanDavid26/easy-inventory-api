@@ -1,8 +1,8 @@
-import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { BaseTable } from './BaseTable';
 import { TransactionTypeEnum } from '../@models/transaction-type.enum';
-import { TransactionArticleQuantityHistory } from '../@models/transaction-article-quantity-history.interface';
 import { Inventory } from './Inventory.entity';
+import { ArticleQuantityTransaction } from './ArticleQuantityTransaction.entity';
 
 @Entity({ schema: 'easyinventory', name: 'transaction' })
 export class Transaction extends BaseTable {
@@ -15,13 +15,16 @@ export class Transaction extends BaseTable {
   @Column({ type: 'enum', enum: TransactionTypeEnum })
   type: TransactionTypeEnum;
 
-  @Column({ name: 'value', type: 'double precision' })
-  value: number;
-
-  @Column({ name: 'j_article_quantity', type: 'jsonb', nullable: true })
-  jArticleQuantity: TransactionArticleQuantityHistory[];
+  @OneToMany(
+    () => ArticleQuantityTransaction,
+    (articleQuantity) => articleQuantity.oTransaction,
+  )
+  tArticleQuantityTransaction: ArticleQuantityTransaction[];
 
   @ManyToOne(() => Inventory, (inventory) => inventory.id)
   @JoinColumn({ name: 'inventory_id' })
   oInventory: Inventory;
+
+  value?: number;
+  quantity?: number;
 }

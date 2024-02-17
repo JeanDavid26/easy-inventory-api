@@ -35,7 +35,11 @@ export class ArticleManagerService {
   public async update(id: number, data: Partial<Article>): Promise<Article> {
     delete data.id;
     data.id = id;
-    return this._repo.save(data);
+    console.log(data);
+    const article = this._repo.create(data);
+    const articleSaved = await this._repo.save(article);
+    console.log('article', articleSaved);
+    return articleSaved;
   }
 
   public async softDelete(id: number): Promise<Article> {

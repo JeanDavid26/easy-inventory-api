@@ -17,12 +17,12 @@ export class ArticleController {
 
   @Get()
   public list(): Promise<Article[]> {
-    console.log('ici');
     return this._articleManagerService.list();
   }
 
   @Get(':id')
   public get(@Param('id') id: number): Promise<Article> {
+    id = Number(id);
     return this._articleManagerService.get(id);
   }
 
@@ -36,11 +36,13 @@ export class ArticleController {
     @Param('id') id: number,
     @Body() data: UpsertArticleDto,
   ): Promise<Article> {
+    id = Number(id);
     return this._articleManagerService.update(id, data);
   }
 
   @Delete(':id')
   public softDelete(@Param('id') id: number): Promise<Article> {
+    id = Number(id);
     return this._articleManagerService.softDelete(id);
   }
 }

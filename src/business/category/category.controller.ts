@@ -16,6 +16,7 @@ export class CategoryController {
   constructor(private _categoryManagerService: CategoryManagerService) {}
   @Get(':id')
   public get(@Param('id') id: number): Promise<Category> {
+    id = Number(id);
     return this._categoryManagerService.get(id);
   }
 
@@ -35,6 +36,7 @@ export class CategoryController {
     @Body() data: UpsertCategoryDto,
   ): Promise<Category> {
     console.log(id);
+    id = Number(id);
     return this._categoryManagerService.update(parseInt(id as any), data);
   }
 

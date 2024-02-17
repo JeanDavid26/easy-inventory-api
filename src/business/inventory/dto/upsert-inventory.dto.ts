@@ -3,7 +3,7 @@ import { InventoryTypeEnum } from 'src/database/@models/inventory-type.enum';
 
 export class UpsertInventoryDto {
   @IsNotEmpty()
-  label: number;
+  label: string;
 
   @IsNotEmpty()
   @IsEnum(InventoryTypeEnum)

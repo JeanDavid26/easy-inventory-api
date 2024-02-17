@@ -10,16 +10,23 @@ export class TransactionManagerService {
   ) {}
 
   public async get(id: number): Promise<Transaction> {
-    const transaction = await this._repo.findOne({
-      where: {
-        id,
-      },
-    });
+    const qb = this._repo
+      .createQueryBuilder('transaction')
+      .leftJoinAndSelect(
+        'transaction.tArticleQuantityTransaction',
+        'tarticlequantity',
+      )
+      .leftJoinAndSelect(
+        'tarticlequantity.oArticle',
+        'tarticlequantity_article',
+      )
+      .leftJoinAndSelect(
+        'tarticlequantity_article.oCategory',
+        'tarticlequantity_category',
+      )
+      .where('transaction.id = :id', { id });
 
-    if (!transaction) {
-      throw new BadRequestException('Transaction not found');
-    }
-    return transaction;
+    return qb.getOne();
   }
 
   public async list(): Promise<Transaction[]> {
@@ -43,11 +50,14 @@ export class TransactionManagerService {
   }
 
   public async delete(id: number): Promise<Transaction> {
-    await this.get(id);
-    const transaction: Partial<Transaction> = {
+    const transaction = await this.get(id);
+    if (!transaction) {
+      throw new BadRequestException('Transaction pas trouvé');
+    }
+    const transactionDeleted: Partial<Transaction> = {
       id,
       deleteDate: new Date(),
     };
-    return this._repo.save(transaction);
+    return this._repo.save(transactionDeleted);
   }
 }

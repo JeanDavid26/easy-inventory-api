@@ -3,7 +3,7 @@ import { BaseTable } from './BaseTable';
 import { Category } from './Category.entity';
 import { ArticleQuantity } from './ArticleQuantity.entity';
 
-@Entity({ schema: 'esayinventory', name: 'article' })
+@Entity({ schema: 'easyinventory', name: 'article' })
 export class Article extends BaseTable {
   @Column()
   label: string;
