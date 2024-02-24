@@ -11,6 +11,9 @@ export class Article extends BaseTable {
   @Column({ name: 'reference_code' })
   referenceCode: string;
 
+  @Column({ name: 'bar_code', nullable: true })
+  barCode: string;
+
   @Column({ name: 'unit_price', type: 'double precision' })
   unitPrice: number;
 

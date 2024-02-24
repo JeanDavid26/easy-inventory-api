@@ -1,4 +1,4 @@
-import { IsNotEmpty } from 'class-validator';
+import { IsNotEmpty, IsOptional } from 'class-validator';
 
 export class UpsertArticleDto {
   @IsNotEmpty()
@@ -12,4 +12,7 @@ export class UpsertArticleDto {
 
   @IsNotEmpty()
   referenceCode: string;
+
+  @IsOptional()
+  barCode: string;
 }

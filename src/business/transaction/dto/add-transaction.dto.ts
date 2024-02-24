@@ -1,9 +1,16 @@
 import { Type } from 'class-transformer';
-import { IsDate, IsEnum, IsNotEmpty, ValidateNested } from 'class-validator';
+import {
+  IsDate,
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  ValidateNested,
+} from 'class-validator';
 import { TransactionTypeEnum } from 'src/database/@models/transaction-type.enum';
 
 export class AddTransactionDto {
   @IsNotEmpty()
+  @IsNumber()
   inventoryId: number;
 
   @IsNotEmpty()
@@ -22,7 +29,9 @@ export class AddTransactionDto {
 
 export class TransactionArticleQuantityDto {
   @IsNotEmpty()
+  @IsNumber()
   articleId: number;
   @IsNotEmpty()
+  @IsNumber()
   quantity: number;
 }

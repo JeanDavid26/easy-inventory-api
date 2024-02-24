@@ -41,13 +41,17 @@ export class TranslateValidatorErrorFilter implements ExceptionFilter {
       }
 
       if (error.constraints.min) {
-        const valeur = error.constraints.min.split('than')[1];
-        error.constraints.min = 'Doit être supérieur à' + valeur + '.';
+        const value = error.constraints.min.split('than')[1];
+        error.constraints.min = 'Doit être supérieur à' + value + '.';
       }
 
       if (error.constraints.max) {
-        const valeur = error.constraints.max.split('than')[1];
-        error.constraints.max = 'Doit être inférieur à' + valeur + '.';
+        const value = error.constraints.max.split('than')[1];
+        error.constraints.max = 'Doit être inférieur à' + value + '.';
+      }
+
+      if (error.constraints.isDate) {
+        error.constraints.isDate = 'Doit être une date';
       }
     }
 

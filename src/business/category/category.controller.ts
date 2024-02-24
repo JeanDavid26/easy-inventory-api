@@ -35,7 +35,6 @@ export class CategoryController {
     @Param('id') id: number,
     @Body() data: UpsertCategoryDto,
   ): Promise<Category> {
-    console.log(id);
     id = Number(id);
     return this._categoryManagerService.update(parseInt(id as any), data);
   }

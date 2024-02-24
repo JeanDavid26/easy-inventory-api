@@ -19,7 +19,6 @@ export class TransactionService {
   ) {}
 
   public async addTransaction(data: AddTransactionDto): Promise<Transaction> {
-    console.log(data);
     const jArticleQuantity: TransactionArticleQuantityHistory[] = [];
     for (const articleQuantity of data.tArticleQuantity) {
       const oArticle = await this._articleManagerService.get(
