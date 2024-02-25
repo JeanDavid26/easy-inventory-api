@@ -15,6 +15,10 @@ import { ArticleQuantityTransaction } from '../entities/ArticleQuantityTransacti
 import { ArticleQuantityTransactionManagerService } from './article-quantity-transaction-manager/article-quantity-transaction-manager.service';
 import { UserManagerService } from './user-manager/user-manager.service';
 import { User } from '../entities/User.entity';
+import { AppFileManagerService } from './app-file-manager/app-file-manager.service';
+import { AppFile } from '../entities/AppFile.entity';
+import { DocumentManagerService } from './document-manager/document-manager.service';
+import { Document } from '../entities/Document.entity';
 
 @Module({
   imports: [
@@ -32,6 +36,8 @@ import { User } from '../entities/User.entity';
       ArticleQuantity,
       ArticleQuantityTransaction,
       User,
+      AppFile,
+      Document,
     ]),
   ],
   providers: [
@@ -42,6 +48,8 @@ import { User } from '../entities/User.entity';
     ArticleQuantityManagerService,
     ArticleQuantityTransactionManagerService,
     UserManagerService,
+    AppFileManagerService,
+    DocumentManagerService,
   ],
   exports: [
     CategoryManagerService,
@@ -51,6 +59,8 @@ import { User } from '../entities/User.entity';
     ArticleQuantityManagerService,
     ArticleQuantityTransactionManagerService,
     UserManagerService,
+    AppFileManagerService,
+    DocumentManagerService,
   ],
 })
 export class DbManagerModule {}

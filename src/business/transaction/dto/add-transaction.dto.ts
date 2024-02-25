@@ -7,9 +7,12 @@ import {
   ValidateNested,
 } from 'class-validator';
 import { TransactionTypeEnum } from 'src/database/@models/transaction-type.enum';
+import { TransformDate } from 'src/shared/decorator/transform-date.decorator';
+import { TransformNumber } from 'src/shared/decorator/transform.number.decorator';
 
 export class AddTransactionDto {
   @IsNotEmpty()
+  @TransformNumber()
   @IsNumber()
   inventoryId: number;
 
@@ -18,6 +21,7 @@ export class AddTransactionDto {
   type: TransactionTypeEnum;
 
   @IsNotEmpty()
+  @TransformDate()
   @IsDate()
   date: Date;
 
@@ -29,9 +33,12 @@ export class AddTransactionDto {
 
 export class TransactionArticleQuantityDto {
   @IsNotEmpty()
+  @TransformNumber()
   @IsNumber()
   articleId: number;
+
   @IsNotEmpty()
+  @TransformNumber()
   @IsNumber()
   quantity: number;
 }
